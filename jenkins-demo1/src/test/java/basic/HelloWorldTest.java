@@ -8,4 +8,9 @@ public class HelloWorldTest {
         new HelloWorld().sayHello();
     }
 
+    @Test
+    public void callNotCovered() {
+        new HelloWorld().notCovered();
+    }
+
 }
