@@ -42,7 +42,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // 请确保这里的sonar.host.url指向您的SonarQube服务器的URL
-                sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                sh "cd jenkins-demo1 && mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
             }
         }
     }
