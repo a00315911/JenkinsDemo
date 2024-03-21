@@ -12,7 +12,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/TianDevLab/JenkinsDemo.git'
                 sh "mvn clean package -DskipTests"
             }
             post {
