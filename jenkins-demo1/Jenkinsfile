@@ -29,7 +29,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh "mvn test jacoco:prepare-agent jacoco:report"
+                sh "cd jenkins-demo1 && mvn test jacoco:prepare-agent jacoco:report"
             }
             post {
                 always {
