@@ -5,7 +5,6 @@ pipeline {
     }
 
     environment {
-        // 确保这里的SONAR_TOKEN是您在Jenkins中配置的SonarQube token
         SONAR_TOKEN = credentials('global_token')
     }
 
@@ -41,7 +40,6 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                // 请确保这里的sonar.host.url指向您的SonarQube服务器的URL
                 sh "cd jenkins-demo1 && mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=http://localhost:9000"
             }
         }
