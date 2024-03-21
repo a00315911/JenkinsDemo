@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "mvn clean package -DskipTests"
+                sh "cd jenkins-demo1 && mvn clean package -DskipTests"
             }
             post {
                 always {
