@@ -7,19 +7,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GreeterTest {
 
     @Test
-    public void testGreet() {
+    void testGreet() {
         Greeter greeter = new Greeter();
         assertEquals("Hello, World!", greeter.greet("World"));
     }
 
     @Test
-    public void testGoodbye(){
+    void testGoodbye() {
         Greeter greeter = new Greeter();
-        assertEquals("Goodbye, Feb!",greeter.sayGoodbye("Feb"));
+        assertEquals("Goodbye, Feb!", greeter.sayGoodbye("Feb"));
     }
 
     @Test
-    public void testWelcome() {
+    void testWelcome() {
         Greeter greeter = new Greeter();
         String name = "John";
         String expectedResult = "Welcome, John!";
