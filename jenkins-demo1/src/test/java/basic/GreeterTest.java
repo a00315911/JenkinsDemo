@@ -17,4 +17,13 @@ public class GreeterTest {
         Greeter greeter = new Greeter();
         assertEquals("Goodbye, Feb!",greeter.sayGoodbye("Feb"));
     }
+
+    @Test
+    public void testWelcome() {
+        Greeter greeter = new Greeter();
+        String name = "John";
+        String expectedResult = "Welcome, John!";
+        String result = greeter.welcome(name);
+        assertEquals(expectedResult, result);
+    }
 }

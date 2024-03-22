@@ -8,5 +8,9 @@ public class Greeter {
     public String sayGoodbye(String name) {
         return "Goodbye, " + name + "!";
     }
+
+    public String welcome(String name) {
+        return "Welcome, " + name + "!";
+    }
 }
 
