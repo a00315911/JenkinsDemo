@@ -10,4 +10,8 @@ public class ExtraFeatures {
         return "FeatureTwo: " + input;
     }
 
+    public String featureThree(String input) {
+        return "FeatureThree: " + input;
+    }
+
 }
