@@ -1,15 +1,16 @@
 package basic;
+
 import org.junit.jupiter.api.Test;
 
-public class HelloWorldTest {
+class HelloWorldTest {
 
     @Test
-    public void sayHello() {
+    void sayHello() {
         new HelloWorld().sayHello();
     }
 
     @Test
-    public void callNotCovered() {
+    void callNotCovered() {
         new HelloWorld().notCovered();
     }
 
