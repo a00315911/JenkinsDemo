@@ -2,7 +2,7 @@ package basic;
 
 public class Greeter {
     public String greet(String name) {
-        return "Hello there, " + name + "!";
+        return "Hi, " + name + "!";
     }
 
     public String sayGoodbye(String name) {
