@@ -15,7 +15,7 @@ class GreeterTest {
     @Test
     void testGoodbye() {
         Greeter greeter = new Greeter();
-        assertEquals("Goodbye, Feb!", greeter.sayGoodbye("Feb"));
+        assertEquals("Goodbye, Jan!", greeter.sayGoodbye("Jan"));
     }
 
     @Test
