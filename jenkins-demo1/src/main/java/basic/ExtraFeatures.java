@@ -14,4 +14,8 @@ public class ExtraFeatures {
         return "FeatureThree: " + input;
     }
 
+    public String featureFour(String input) {
+        return "FeatureThree: " + input;
+    }
+
 }
