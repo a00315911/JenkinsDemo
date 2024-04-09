@@ -14,7 +14,7 @@ public class ExtraFeatures {
         return "FeatureThree: " + input;
     }
 
-    public String featureFour(String input) {
+    public String featureFive(String input) {
         return "FeatureThree: " + input;
     }
 
