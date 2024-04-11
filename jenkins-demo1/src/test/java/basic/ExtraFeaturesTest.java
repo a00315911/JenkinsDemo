@@ -23,5 +23,11 @@ class ExtraFeaturesTest {
         Assertions.assertEquals("FeatureThree: Test", features.featureThree("Test"));
     }
 
+    @Test
+    void testFour() {
+        ExtraFeatures features = new ExtraFeatures();
+        Assertions.assertEquals("FeatureFour: Test", features.featureFour("Test"));
+    }
+
 
 }
