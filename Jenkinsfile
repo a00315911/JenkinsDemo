@@ -1,30 +1,51 @@
 pipeline{
-   agent any 
+    agent any
+    tools{
+        maven "maven3"
+    }
     
-    tools {
-        maven 'maven3' 
-    }
-    environment{
+       
+    environment {
         SONAR_TOKEN = credentials('jenkins-demo')
+        
     }
-   
-    stages {
-        stage('Clone Git Repository') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/a00315911/JenkinsDemo.git'
+    
+    stages{
+        stage('Build'){
+            steps{
+                git 'https://github.com/a00315911/JenkinsDemo.git'
+                bat "mvn clean package -DskipTests"
+            }
+            
+            post{
+                always{
+                    echo 'stage post always'
+                }
+                
+                
+                success{
+                    echo 'pipeline post success'
+                }
+                
+                failure{
+                    echo 'pipeline post failure'
+                }
+                
             }
         }
-        stage('Build Project') {
+        
+        stage('Test') {
             steps {
-                bat 'mvn clean install'
+                bat "mvn test jacoco:prepare-agent jacoco:report"
+            }
+
+            post {
+                always {
+                    jacoco(execPattern: '**/target/jacoco.exec')
+                    junit '**/target/surefire-reports/*.xml'
+                }
             }
         }
-        stage('Execute Unit Tests') {
-      		steps {
-        		bat 'mvn test'
-      		}
-    	}
         stage('Static Code Analysis (SonarQube)') {
         	steps {
         		withSonarQubeEnv('SonarQube_server'){
@@ -32,15 +53,7 @@ pipeline{
         		}
       		}
         }
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts 'target/*.jar'
-            }
-        }
-        stage('Deploy Application (Simulation)') {
-            steps {
-                echo 'Successfully deployed the application!'
-            }
-        }
+
+        
     }
 }
