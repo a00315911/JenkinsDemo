@@ -1,46 +1,45 @@
-pipeline {
-    agent any
+pipeline{
+   agent any 
+    
     tools {
-        maven "maven-3.9.6"
+        maven 'maven3' 
     }
-
-    environment {
-        SONAR_TOKEN = credentials('global_token')
+    environment{
+        SONAR_TOKEN = credentials('jenkins-demo')
     }
-
+   
     stages {
-        stage('Build') {
+        stage('Clone Git Repository') {
             steps {
-                sh "cd jenkins-demo1 && mvn clean package -DskipTests"
-            }
-            post {
-                always {
-                    echo 'stage post always'
-                }
-                success {
-                    echo 'pipeline post success'
-                }
-                failure {
-                    echo 'pipeline post failure'
-                }
+                git branch: 'main',
+                    url: 'https://github.com/a00315911/JenkinsDemo.git'
             }
         }
-
-        stage('Test') {
+        stage('Build Project') {
             steps {
-                sh "cd jenkins-demo1 && mvn test jacoco:prepare-agent jacoco:report"
-            }
-            post {
-                always {
-                    jacoco(execPattern: '**/target/jacoco.exec')
-                    junit '**/target/surefire-reports/*.xml'
-                }
+                bat 'mvn clean install'
             }
         }
-
-        stage('SonarQube Analysis') {
+        stage('Execute Unit Tests') {
+      		steps {
+        		bat 'mvn test'
+      		}
+    	}
+        stage('Static Code Analysis (SonarQube)') {
+        	steps {
+        		withSonarQubeEnv('SonarQube_server'){
+        		 bat 'mvn sonar:sonar'   
+        		}
+      		}
+        }
+        stage('Archive Artifacts') {
             steps {
-                sh "cd jenkins-demo1 && mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=http://localhost:9000"
+                archiveArtifacts 'target/*.jar'
+            }
+        }
+        stage('Deploy Application (Simulation)') {
+            steps {
+                echo 'Successfully deployed the application!'
             }
         }
     }
